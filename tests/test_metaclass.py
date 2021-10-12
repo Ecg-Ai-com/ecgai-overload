@@ -1,8 +1,16 @@
 import pytest
 
 from src.ecgai_overload.metaclass import NoMatchingOverload
-from tests.mock_class import RootClass, int_overload, str_overload, int_str_overload, int_int_overload, \
-    str_str_overload, SubClass, flt_flt_overload
+from tests.mock_class import (
+    RootClass,
+    int_overload,
+    str_overload,
+    int_str_overload,
+    int_int_overload,
+    str_str_overload,
+    SubClass,
+    flt_flt_overload,
+)
 
 
 class TestMetaClass:
@@ -15,13 +23,13 @@ class TestMetaClass:
     def test_str_overload_with_named_parameters(self):
         expected = str_overload
         sut = RootClass()
-        result = sut.run(str1='number two')
+        result = sut.run(str1="number two")
         assert expected == result
 
     def test_int_and_str_overload_with_named_parameters(self):
         expected = int_str_overload
         sut = RootClass()
-        result = sut.run(num1=2, str1='number two')
+        result = sut.run(num1=2, str1="number two")
         assert expected == result
 
     def test_int_and_int_overload_with_named_parameters(self):
@@ -33,7 +41,7 @@ class TestMetaClass:
     def test_str_and_str_overload_with_named_parameters(self):
         expected = str_str_overload
         sut = RootClass()
-        result = sut.run(str1='number two', str2='number three')
+        result = sut.run(str1="number two", str2="number three")
         assert expected == result
 
     def test_int_overload_without_named_parameters(self):
@@ -45,13 +53,13 @@ class TestMetaClass:
     def test_str_overload_without_named_parameters(self):
         expected = str_overload
         sut = RootClass()
-        result = sut.run('number two')
+        result = sut.run("number two")
         assert expected == result
 
     def test_int_and_str_overload_without_named_parameters(self):
         expected = int_str_overload
         sut = RootClass()
-        result = sut.run(2, 'number two')
+        result = sut.run(2, "number two")
         assert expected == result
 
     def test_int_and_int_overload_without_named_parameters(self):
@@ -63,7 +71,7 @@ class TestMetaClass:
     def test_str_and_str_overload_without_named_parameters(self):
         expected = str_str_overload
         sut = RootClass()
-        result = sut.run('number two', 'number three')
+        result = sut.run("number two", "number three")
         assert expected == result
 
     def test_flt_and_flt_overload_from_subclass_with_named_parameters(self):
@@ -94,4 +102,23 @@ class TestMetaClass:
         sut = SubClass()
         with pytest.raises(NoMatchingOverload):
             # noinspection PyArgumentList
-            sut.run(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 'test', 'method', 'does', 'not', 'exist')
+            sut.run(
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                "test",
+                "method",
+                "does",
+                "not",
+                "exist",
+            )
