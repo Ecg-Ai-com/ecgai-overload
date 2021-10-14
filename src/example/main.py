@@ -121,11 +121,11 @@ def time_performance():
     print(f'{t_time/r_time=}')
 
 
-def main():
+def run():
     overload_dict_usage()
     overloaded_class_example()
     time_performance()
 
 
 if __name__ == '__main__':
-    main()
+    run()

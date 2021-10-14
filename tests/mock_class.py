@@ -1,5 +1,5 @@
 from src.ecgai_overload.metaclass import overload
-from test import OverloadMeta
+from src.example.main import OverloadMeta
 
 int_overload = f'int overload'
 str_overload = f'str overload'
