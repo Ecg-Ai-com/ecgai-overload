@@ -1,4 +1,3 @@
-import timeit
 
 from src.ecgai_overload.metaclass import overload, OverloadDict, OverloadMeta
 
@@ -85,46 +84,46 @@ def overloaded_class_example():
     # c.f(None) # no matching overload
 
 
-def time_performance():
-    print("TIME PERFORMANCE")
-
-    class R:
-        @staticmethod
-        def f(x):
-            return sum(range(1000))
-
-    class S:
-        def f(self, x, y=None):
-            if y is None:
-                return sum(range(1000))
-            return 42
-
-    class T(metaclass=OverloadMeta):
-        @overload
-        def f(self, x):
-            return sum(range(1000))
-
-        @overload
-        def f(self, x, y):
-            return 42
-
-    r = R()
-    s = S()
-    t = T()
-    r_time = timeit.timeit('r.f(1)', globals=locals(), number=1000)
-    s_time = timeit.timeit('s.f(1)', globals=locals(), number=1000)
-    t_time = timeit.timeit('t.f(1)', globals=locals(), number=1000)
-    print(f'{r_time=}')
-    print(f'{s_time=}')
-    print(f'{t_time=}')
-    print(f'{t_time/s_time=}')
-    print(f'{t_time/r_time=}')
+# def time_performance():
+#     print("TIME PERFORMANCE")
+#
+#     class R:
+#         @staticmethod
+#         def f(x):
+#             return sum(range(1000))
+#
+#     class S:
+#         def f(self, x, y=None):
+#             if y is None:
+#                 return sum(range(1000))
+#             return 42
+#
+#     class T(metaclass=OverloadMeta):
+#         @overload
+#         def f(self, x):
+#             return sum(range(1000))
+#
+#         @overload
+#         def f(self, x, y):
+#             return 42
+#
+#     r = R()
+#     s = S()
+#     t = T()
+#     r_time = timeit.timeit('r.f(1)', globals=locals(), number=1000)
+#     s_time = timeit.timeit('s.f(1)', globals=locals(), number=1000)
+#     t_time = timeit.timeit('t.f(1)', globals=locals(), number=1000)
+#     print(f'{r_time=}')
+#     print(f'{s_time=}')
+#     print(f'{t_time=}')
+#     print(f'{t_time/s_time=}')
+#     print(f'{t_time/r_time=}')
 
 
 def run():
     overload_dict_usage()
     overloaded_class_example()
-    time_performance()
+    # time_performance()
 
 
 if __name__ == '__main__':
